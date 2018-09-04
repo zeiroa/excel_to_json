@@ -65,7 +65,6 @@ class PluralizationRulesTest extends TestCase
             array('2', array('nl', 'fr', 'en', 'de', 'de_GE', 'hy', 'hy_AM')),
             array('3', array('be', 'bs', 'cs', 'hr')),
             array('4', array('cy', 'mt', 'sl')),
-            array('5', array()),
             array('6', array('ar')),
         );
     }
@@ -86,15 +85,14 @@ class PluralizationRulesTest extends TestCase
             array('3', array('cbs')),
             array('4', array('gd', 'kw')),
             array('5', array('ga')),
-            array('6', array()),
         );
     }
 
     /**
      * We validate only on the plural coverage. Thus the real rules is not tested.
      *
-     * @param string $nplural       plural expected
-     * @param array  $matrix        containing langcodes and their plural index values
+     * @param string $nplural       Plural expected
+     * @param array  $matrix        Containing langcodes and their plural index values
      * @param bool   $expectSuccess
      */
     protected function validateMatrix($nplural, $matrix, $expectSuccess = true)
@@ -102,9 +100,9 @@ class PluralizationRulesTest extends TestCase
         foreach ($matrix as $langCode => $data) {
             $indexes = array_flip($data);
             if ($expectSuccess) {
-                $this->assertEquals($nplural, count($indexes), "Langcode '$langCode' has '$nplural' plural forms.");
+                $this->assertEquals($nplural, \count($indexes), "Langcode '$langCode' has '$nplural' plural forms.");
             } else {
-                $this->assertNotEquals((int) $nplural, count($indexes), "Langcode '$langCode' has '$nplural' plural forms.");
+                $this->assertNotEquals((int) $nplural, \count($indexes), "Langcode '$langCode' has '$nplural' plural forms.");
             }
         }
     }
